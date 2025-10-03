@@ -2,13 +2,6 @@ npm i -g @nestjs/cli@latest
 nest new nestjs-api-tutorial-example
 cd nestjs-api-tutorial-example/
 
-pnpm i --save-dev prisma
-pnpm prisma init
-pnpm prisma migrate dev 
-pnpm add @prisma/client
-pnpm prisma generate
-pnpm prisma studio
-
 
 nest g module user
 nest g module bookmark
@@ -16,5 +9,69 @@ nest g module prisma
 nest g service  prisma --no-spec
 
 
+# Install Prisma CLI as a dev dependency
+# pnpm add -D prisma
+pnpm i --save-dev prisma
+
+# Install Prisma Client as a regular dependency
+# pnpm add @prisma/client
+pnpm add -D @prisma/client
+
+# Initialize Prisma
+pnpm prisma init
+
+# Run migration
+pnpm prisma migrate dev  
+
+# Generate Prisma Client
+pnpm prisma generate
+pnpm prisma studio
+
+
 pnpm add -D @nestjs/config
 pnpm add @nestjs/config
+
+pnpm add class-validator class-transformer
+
+pnpm i --save bcrypt
+pnpm i --save-dev @types/bcrypt
+
+pnpm add argon2
+
+pnpm add @nestjs/passport passport passport-local
+pnpm add -D @types/passport @types/passport-local
+
+pnpm add @nestjs/jwt passport-jwt
+pnpm add -D @types/passport-jwt
+
+
+
+
+
+for img in /Volumes/SYAAR/TITHI/*.JPG; do
+    [ -e "$img" ] || continue  # skip if no files
+    filename=$(basename "$img")
+    sips --resampleHeightWidthMax 1024 "$img" --out "/Users/jerin/Desktop/Pictures/tithi/$filename"
+done
+
+i=1
+n=0
+for f in *; do
+  folder=$((n/500 + 1))
+  mkdir -p "/Volumes/RIYAL-RAZI/tv/$folder"
+  cp "$f" "/Volumes/RIYAL-RAZI/tv/$folder/"
+  n=$((n+1))
+done
+
+
+total=$(ls | wc -l)   # total files
+i=0
+n=0
+for f in *; do
+  folder=$((n/500 + 1))
+  mkdir -p "/Volumes/RIYAL-RAZI/tv/$folder"
+  cp "$f" "/Volumes/RIYAL-RAZI/tv/$folder/"
+  i=$((i+1))
+  n=$((n+1))
+  echo $i | pv -s $total > /dev/null
+done
